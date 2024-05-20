@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $consultum->name ?? __('Show') . " " . __('Consultum') }}
+    {{ $consulta->name ?? __('Show') . " " . __('Consulta') }}
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Consultum</span>
+                            <span class="card-title">{{ __('Show') }} Consulta</span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary btn-sm" href="{{ route('consulta.index') }}"> {{ __('Back') }}</a>
@@ -22,23 +22,23 @@
                         
                                 <div class="form-group mb-2 mb20">
                                     <strong>Idconsulta:</strong>
-                                    {{ $consultum->IdConsulta }}
+                                    {{ $consulta->IdConsulta }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
                                     <strong>User Id:</strong>
-                                    {{ $consultum->user_id }}
+                                    {{ $consulta->user_id }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
                                     <strong>Fechahora:</strong>
-                                    {{ $consultum->FechaHora }}
+                                    {{ $consulta->FechaHora }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
                                     <strong>Descripcion:</strong>
-                                    {{ $consultum->Descripcion }}
+                                    {{ $consulta->Descripcion }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
                                     <strong>Costo:</strong>
-                                    {{ $consultum->Costo }}
+                                    {{ $consulta->Costo }}
                                 </div>
 
                     </div>

@@ -16,9 +16,7 @@
                     <div class="card-body bg-white">
                         <form method="POST" action="{{ route('consulta.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
-
-                            @include('consulta.form')
-
+                            @include('consulta.form', ['consulta' => $consulta, 'users' => $users])
                         </form>
                     </div>
                 </div>

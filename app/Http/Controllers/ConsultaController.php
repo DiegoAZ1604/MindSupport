@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Consulta;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\ConsultaRequest;
@@ -28,8 +29,8 @@ class ConsultaController extends Controller
     public function create(): View
     {
         $consulta = new Consulta();
-
-        return view('consulta.create', compact('consulta'));
+        $users = User::all();
+        return view('consulta.create', compact('consulta', 'users'));
     }
 
     /**
