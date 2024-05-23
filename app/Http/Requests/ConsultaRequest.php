@@ -22,7 +22,6 @@ class ConsultaRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'IdConsulta' => 'required',
 			'user_id' => 'required',
 			'FechaHora' => 'required',
 			'Descripcion' => 'required|string',

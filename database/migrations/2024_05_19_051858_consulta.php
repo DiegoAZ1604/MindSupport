@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users'); //FK
             $table->datetime('FechaHora');
             $table->string('Descripcion', 500);
-            $table->double('Costo')->nullable();
+            $table->decimal('Costo')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('Consulta');
     }
 };

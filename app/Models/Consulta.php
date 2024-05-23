@@ -22,7 +22,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Consulta extends Model
 {
-    
+    protected $table = 'Consulta';
+
+    protected $primaryKey = 'IdConsulta';
+
+    public $incrementing = true;
+
+    protected $keyType = 'int';
+
     protected $perPage = 20;
 
     /**
@@ -30,7 +37,7 @@ class Consulta extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['IdConsulta', 'user_id', 'FechaHora', 'Descripcion', 'Costo'];
+    protected $fillable = ['user_id', 'FechaHora', 'Descripcion', 'Costo'];
 
 
     /**

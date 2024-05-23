@@ -18,8 +18,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/consulta', [ConsultaController::class, 'index'])->name('consulta.index');
-Route::get('/consulta', [ConsultaController::class, 'create'])->name('consulta.create');
-Route::post('/consulta', [ConsultaController::class, 'store'])->name('consulta.store');
+Route::prefix('consulta')->group(function () {
+    Route::get('/', [ConsultaController::class, 'index'])->name('consulta.index');
+    Route::get('/create', [ConsultaController::class, 'create'])->name('consulta.create');
+    Route::post('/', [ConsultaController::class, 'store'])->name('consulta.store');
+    Route::get('/{id}', [ConsultaController::class, 'show'])->name('consulta.show');
+    Route::get('/{id}/edit', [ConsultaController::class, 'edit'])->name('consulta.edit');
+    Route::put('/{id}', [ConsultaController::class, 'update'])->name('consulta.update');
+    Route::delete('/{id}', [ConsultaController::class, 'destroy'])->name('consulta.destroy');
+});
 
 require __DIR__.'/auth.php';
+

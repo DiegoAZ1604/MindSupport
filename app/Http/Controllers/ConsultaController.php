@@ -19,6 +19,7 @@ class ConsultaController extends Controller
     {
         $consulta = Consulta::paginate();
 
+
         return view('consulta.index', compact('consulta'))
             ->with('i', ($request->input('page', 1) - 1) * $consulta->perPage());
     }
