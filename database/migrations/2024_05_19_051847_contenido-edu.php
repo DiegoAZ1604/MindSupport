@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users'); //FK
             $table -> string('Titulo', 100);
             $table -> string('Descripcion', 1000);
-            $table -> enum('TipoContenido', ['texto', 'audio', 'video', 'enlace']); //This column defines the type of content stored in the Contenido column (text, audio, video, or enlace).
+            $table -> enum('TipoContenido', ['texto', 'audio', 'video', 'enlace', 'archivo']); //This column defines the type of content stored in the Contenido column (text, audio, video, or enlace).
             $table -> longText('Contenido');
             $table -> timestamps();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('ContenidoEdu');
     }
 };

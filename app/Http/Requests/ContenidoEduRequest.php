@@ -22,7 +22,6 @@ class ContenidoEduRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'IdContenido' => 'required',
 			'user_id' => 'required',
 			'Titulo' => 'required|string',
 			'Descripcion' => 'required|string',

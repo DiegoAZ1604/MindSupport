@@ -23,6 +23,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ContenidoEdu extends Model
 {
+    protected $table = 'ContenidoEdu';
+
+    protected $primaryKey = 'IdContenido';
+
+    public $incrementing = true;
+
+    protected $keyType = 'int';
     
     protected $perPage = 20;
 
@@ -31,7 +38,7 @@ class ContenidoEdu extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['IdContenido', 'user_id', 'Titulo', 'Descripcion', 'TipoContenido', 'Contenido'];
+    protected $fillable = ['user_id', 'Titulo', 'Descripcion', 'TipoContenido', 'Contenido'];
 
 
     /**

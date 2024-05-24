@@ -13,11 +13,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Contenido Edus') }}
+                                {{ __('Contenido Educativo') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('contenido-edus.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('contenido-edu.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -47,21 +47,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($contenidoEdus as $contenidoEdu)
+                                    @foreach ($contenidoEdu as $contenidoEdu)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-										<td >{{ $contenidoEdu->IdContenido }}</td>
 										<td >{{ $contenidoEdu->user_id }}</td>
 										<td >{{ $contenidoEdu->Titulo }}</td>
 										<td >{{ $contenidoEdu->Descripcion }}</td>
 										<td >{{ $contenidoEdu->TipoContenido }}</td>
-										<td >{{ $contenidoEdu->Contenido }}</td>
+										<td>
+                                            @if ($contenidoEdu->TipoContenido == 'enlace')
+                                                <a href="{{ $contenidoEdu->Contenido }}" target="_blank">{{ __('Ver Link') }}</a>
+                                            @elseif (in_array($contenidoEdu->TipoContenido, ['texto', 'audio', 'video']))
+                                                <a href="{{ asset('storage/app/uploads/' . $contenidoEdu->Contenido) }}" target="_blank">Download File</a>
+                                            @else
+                                                {{ __('Unknown Content Type') }}
+                                            @endif
+                                        </td>
+                                        
 
                                             <td>
-                                                <form action="{{ route('contenido-edus.destroy', $contenidoEdu->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('contenido-edus.show', $contenidoEdu->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('contenido-edus.edit', $contenidoEdu->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('contenido-edu.destroy', $contenidoEdu->IdContenido) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('contenido-edu.show', $contenidoEdu->IdContenido) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('contenido-edu.edit', $contenidoEdu->IdContenido) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
@@ -74,7 +82,6 @@
                         </div>
                     </div>
                 </div>
-                {!! $contenidoEdus->withQueryString()->links() !!}
             </div>
         </div>
     </div>
