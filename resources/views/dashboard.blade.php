@@ -11,6 +11,9 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("Bienvenido a MindSupport!") }}
                 </div>
+                <div>
+                    <p>Holaaaa</p>
+                </div>
             </div>
         </div>
     </div>

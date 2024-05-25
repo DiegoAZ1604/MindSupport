@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Servicio;
+use App\Models\User;
+use App\Models\ContenidoEdu;
+use App\Models\Consulta;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\ServicioRequest;
@@ -16,10 +19,13 @@ class ServicioController extends Controller
      */
     public function index(Request $request): View
     {
-        $servicios = Servicio::paginate();
-
-        return view('servicio.index', compact('servicios'))
-            ->with('i', ($request->input('page', 1) - 1) * $servicios->perPage());
+        $servicio = Servicio::paginate();
+        $users = User::all();
+        $contenidoEdu = ContenidoEdu::all();
+        $consulta = Consulta::all();
+        
+        return view('servicio.index', compact('servicio', 'users', 'contenidoEdu', 'consulta'))
+            ->with('i', ($request->input('page', 1) - 1) * $servicio->perPage());
     }
 
     /**
@@ -28,8 +34,11 @@ class ServicioController extends Controller
     public function create(): View
     {
         $servicio = new Servicio();
+        $users = User::all();
+        $contenidoEdu = ContenidoEdu::all();
+        $consulta = Consulta::all();
 
-        return view('servicio.create', compact('servicio'));
+        return view('servicio.create', compact('servicio', 'users', 'contenidoEdu', 'consulta'));
     }
 
     /**
@@ -39,7 +48,7 @@ class ServicioController extends Controller
     {
         Servicio::create($request->validated());
 
-        return Redirect::route('servicios.index')
+        return Redirect::route('servicio.index')
             ->with('success', 'Servicio created successfully.');
     }
 
@@ -70,7 +79,7 @@ class ServicioController extends Controller
     {
         $servicio->update($request->validated());
 
-        return Redirect::route('servicios.index')
+        return Redirect::route('servicio.index')
             ->with('success', 'Servicio updated successfully');
     }
 
@@ -78,7 +87,7 @@ class ServicioController extends Controller
     {
         Servicio::find($id)->delete();
 
-        return Redirect::route('servicios.index')
+        return Redirect::route('servicio.index')
             ->with('success', 'Servicio deleted successfully');
     }
 }

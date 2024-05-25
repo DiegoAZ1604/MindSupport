@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Servicios
+    Servicio
 @endsection
 
 @section('content')
@@ -9,16 +9,16 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header text-white">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Servicios') }}
+                                {{ __('Servicio') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('servicios.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                <a href="{{ route('servicio.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                  {{ __('Crear Nuevo') }}
                                 </a>
                               </div>
                         </div>
@@ -29,37 +29,34 @@
                         </div>
                     @endif
 
-                    <div class="card-body bg-white">
+                    <div class="card-body bg-black text-white">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
                                         
-									<th >Idservicio</th>
-									<th >User Id</th>
-									<th >Idcontenido</th>
-									<th >Idconsulta</th>
+									<th >Nombre De Usuario</th>
+									<th >Titulo de Contenido</th>
+									<th >Descripción de Consulta</th>
 									<th >Costo</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($servicios as $servicio)
+                                    @foreach ($servicio as $servicio)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
                                             
-										<td >{{ $servicio->IdServicio }}</td>
-										<td >{{ $servicio->user_id }}</td>
-										<td >{{ $servicio->IdContenido }}</td>
-										<td >{{ $servicio->IdConsulta }}</td>
-										<td >{{ $servicio->Costo }}</td>
+                                            <td>{{ $servicio->user->name }}</td>
+                                            <td>{{ $servicio->contenidoEdu ? $servicio->contenidoEdu->Titulo : '' }}</td>
+                                            <td>{{ $servicio->consulta ? $servicio->consulta->Descripcion : '' }}</td>
+                                            <td>{{ $servicio->Costo }}</td>
+                                           
 
                                             <td>
-                                                <form action="{{ route('servicios.destroy', $servicio->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('servicios.show', $servicio->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('servicios.edit', $servicio->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('servicio.destroy', $servicio->IdServicio) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('servicio.show', $servicio->IdServicio) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('servicio.edit', $servicio->IdServicio) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
@@ -72,7 +69,6 @@
                         </div>
                     </div>
                 </div>
-                {!! $servicios->withQueryString()->links() !!}
             </div>
         </div>
     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Calificacion;
+use App\Models\Servicio;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\CalificacionRequest;
@@ -16,10 +17,10 @@ class CalificacionController extends Controller
      */
     public function index(Request $request): View
     {
-        $calificacions = Calificacion::paginate();
+        $calificacion = Calificacion::paginate();
 
-        return view('calificacion.index', compact('calificacions'))
-            ->with('i', ($request->input('page', 1) - 1) * $calificacions->perPage());
+        return view('calificacion.index', compact('calificacion'))
+            ->with('i', ($request->input('page', 1) - 1) * $calificacion->perPage());
     }
 
     /**
@@ -28,8 +29,9 @@ class CalificacionController extends Controller
     public function create(): View
     {
         $calificacion = new Calificacion();
+        $servicios = Servicio::all();
 
-        return view('calificacion.create', compact('calificacion'));
+        return view('calificacion.create', compact('calificacion', 'servicios'));
     }
 
     /**
@@ -39,7 +41,7 @@ class CalificacionController extends Controller
     {
         Calificacion::create($request->validated());
 
-        return Redirect::route('calificacions.index')
+        return Redirect::route('calificacion.index')
             ->with('success', 'Calificacion created successfully.');
     }
 
@@ -70,7 +72,7 @@ class CalificacionController extends Controller
     {
         $calificacion->update($request->validated());
 
-        return Redirect::route('calificacions.index')
+        return Redirect::route('calificacion.index')
             ->with('success', 'Calificacion updated successfully');
     }
 
@@ -78,7 +80,7 @@ class CalificacionController extends Controller
     {
         Calificacion::find($id)->delete();
 
-        return Redirect::route('calificacions.index')
+        return Redirect::route('calificacion.index')
             ->with('success', 'Calificacion deleted successfully');
     }
 }

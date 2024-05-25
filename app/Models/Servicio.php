@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $created_at
  * @property $updated_at
  *
- * @property Consultum $consultum
+ * @property Consulta $consulta
  * @property ContenidoEdu $contenidoEdu
  * @property User $user
  * @property Calificacion[] $calificacions
@@ -24,6 +24,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Servicio extends Model
 {
+    protected $table = 'Servicio';
+
+    protected $primaryKey = 'IdServicio';
+
+    public $incrementing = true;
+
+    protected $keyType = 'int';
     
     protected $perPage = 20;
 
@@ -32,15 +39,15 @@ class Servicio extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['IdServicio', 'user_id', 'IdContenido', 'IdConsulta', 'Costo'];
+    protected $fillable = ['user_id', 'IdContenido', 'IdConsulta', 'Costo'];
 
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function consultum()
+    public function consulta()
     {
-        return $this->belongsTo(\App\Models\Consultum::class, 'IdConsulta', 'IdConsulta');
+        return $this->belongsTo(\App\Models\Consulta::class, 'IdConsulta', 'IdConsulta');
     }
     
     /**

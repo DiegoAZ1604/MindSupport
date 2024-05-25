@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\ContenidoEduController;
+use App\Http\Controllers\ServicioController;
+use App\Http\Controllers\CalificacionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -39,6 +41,30 @@ Route::prefix('contenidoEdu')->group(function (){
     Route::get('/{id}/edit', [ContenidoEduController::class, 'edit'])->name('contenido-edu.edit');
     Route::put('/{id}', [ContenidoEduController::class, 'update'])->name('contenido-edu.update');
     Route::delete('/{id}', [ContenidoEduController::class, 'destroy'])->name('contenido-edu.destroy');
+
+});
+
+//Rutas para Servicio
+Route::prefix('servicio')->group(function (){
+    Route::get('/', [ServicioController::class, 'index'])->name('servicio.index');
+    Route::get('/create', [ServicioController::class, 'create'])->name('servicio.create');
+    Route::post('/', [ServicioController::class, 'store'])->name('servicio.store');
+    Route::get('/{id}', [ServicioController::class, 'show'])->name('servicio.show');
+    Route::get('/{id}/edit', [ServicioController::class, 'edit'])->name('servicio.edit');
+    Route::put('/{id}', [ServicioController::class, 'update'])->name('servicio.update');
+    Route::delete('/{id}', [ServicioController::class, 'destroy'])->name('servicio.destroy');
+
+});
+
+//Rutas para Calificacion
+Route::prefix('calificacion')->group(function (){
+    Route::get('/', [CalificacionController::class, 'index'])->name('calificacion.index');
+    Route::get('/create', [CalificacionController::class, 'create'])->name('calificacion.create');
+    Route::post('/', [CalificacionController::class, 'store'])->name('calificacion.store');
+    Route::get('/{id}', [CalificacionController::class, 'show'])->name('calificacion.show');
+    Route::get('/{id}/edit', [CalificacionController::class, 'edit'])->name('calificacion.edit');
+    Route::put('/{id}', [CalificacionController::class, 'update'])->name('calificacion.update');
+    Route::delete('/{id}', [CalificacionController::class, 'destroy'])->name('calificacion.destroy');
 
 });
 

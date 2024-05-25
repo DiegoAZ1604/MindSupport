@@ -25,6 +25,7 @@ class ConsultaRequest extends FormRequest
 			'user_id' => 'required',
 			'FechaHora' => 'required',
 			'Descripcion' => 'required|string',
+            'Costo' => 'required'
         ];
     }
 }

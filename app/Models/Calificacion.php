@@ -20,6 +20,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Calificacion extends Model
 {
+
+    protected $table = 'Calificacion';
+
+    protected $primaryKey = 'IdCalificacion';
+
+    public $incrementing = true;
+
+    protected $keyType = 'int';
     
     protected $perPage = 20;
 
@@ -28,7 +36,7 @@ class Calificacion extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['IdCalificacion', 'IdServicio', 'Puntuacion', 'Comentario'];
+    protected $fillable = ['IdServicio', 'Puntuacion', 'Comentario'];
 
 
     /**

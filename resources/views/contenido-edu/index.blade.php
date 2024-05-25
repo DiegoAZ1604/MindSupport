@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header text-white">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
@@ -18,7 +18,7 @@
 
                              <div class="float-right">
                                 <a href="{{ route('contenido-edu.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Crear Nuevo') }}
                                 </a>
                               </div>
                         </div>
@@ -29,18 +29,16 @@
                         </div>
                     @endif
 
-                    <div class="card-body bg-white">
+                    <div class="card-body bg-black text-white">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
                                         
-									<th >Idcontenido</th>
-									<th >User Id</th>
+									<th >Nombre de Usuario</th>
 									<th >Titulo</th>
 									<th >Descripcion</th>
-									<th >Tipocontenido</th>
+									<th >Tipo de Contenido</th>
 									<th >Contenido</th>
 
                                         <th></th>
@@ -49,9 +47,9 @@
                                 <tbody>
                                     @foreach ($contenidoEdu as $contenidoEdu)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
                                             
-										<td >{{ $contenidoEdu->user_id }}</td>
+                                            
+										<td >{{ $contenidoEdu->user->name }}</td>
 										<td >{{ $contenidoEdu->Titulo }}</td>
 										<td >{{ $contenidoEdu->Descripcion }}</td>
 										<td >{{ $contenidoEdu->TipoContenido }}</td>

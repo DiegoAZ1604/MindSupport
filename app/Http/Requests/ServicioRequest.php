@@ -22,8 +22,9 @@ class ServicioRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'IdServicio' => 'required',
 			'user_id' => 'required',
+            'IdContenido' => 'required',
+            'IdConsulta' => 'required',
 			'Costo' => 'required',
         ];
     }

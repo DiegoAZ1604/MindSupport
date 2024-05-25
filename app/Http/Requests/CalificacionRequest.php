@@ -22,7 +22,6 @@ class CalificacionRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'IdCalificacion' => 'required',
 			'IdServicio' => 'required',
 			'Puntuacion' => 'required',
 			'Comentario' => 'required|string',

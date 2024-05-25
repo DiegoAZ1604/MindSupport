@@ -18,9 +18,9 @@ class ConsultaController extends Controller
     public function index(Request $request): View
     {
         $consulta = Consulta::paginate();
+        $users = User::all();
 
-
-        return view('consulta.index', compact('consulta'))
+        return view('consulta.index', compact('consulta', 'users'))
             ->with('i', ($request->input('page', 1) - 1) * $consulta->perPage());
     }
 

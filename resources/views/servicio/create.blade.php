@@ -7,18 +7,17 @@
 @section('content')
     <section class="content container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 text-white">
 
                 <div class="card card-default">
                     <div class="card-header">
                         <span class="card-title">{{ __('Create') }} Servicio</span>
                     </div>
-                    <div class="card-body bg-white">
-                        <form method="POST" action="{{ route('servicios.store') }}"  role="form" enctype="multipart/form-data">
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('servicio.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('servicio.form')
-
+                            @include('servicio.form', ['servicio' => $servicio, 'users' => $users, 'contenidoEdu' => $contenidoEdu, 'consulta' => $consulta])
                         </form>
                     </div>
                 </div>

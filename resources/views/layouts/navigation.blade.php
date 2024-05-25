@@ -12,8 +12,23 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link :href="route('consulta.index')" :active="request()->routeIs('consulta.*')">
+                        {{ __('Consulta') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('contenido-edu.index')" :active="request()->routeIs('contenido-edu.*')">
+                        {{ __('Contenido Educativo') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('servicio.index')" :active="request()->routeIs('servicio.*')">
+                        {{ __('Servicio') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('calificacion.index')" :active="request()->routeIs('calificacion.*')">
+                        {{ __('Calificacion') }}
                     </x-nav-link>
                 </div>
                
